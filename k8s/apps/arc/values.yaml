@@ -1,7 +1,7 @@
 githubConfigUrl: https://github.com/gabriel-suela/homeops
 
 githubConfigSecret:
-  github_token: ref+sops://secrets.enc.yaml
+  github_token: ref+sops://secrets.enc.yaml#github_token
 
 runnerScaleSetName: kind-runners
 
@@ -9,7 +9,7 @@ minRunners: 1
 maxRunners: 5
 
 containerMode:
-  type: dind
+  type: kubernetes
 controllerServiceAccount:
   namespace: arc-system
   name: arc-gha-rs-controller
@@ -20,3 +20,13 @@ template:
       - name: runner
         image: ghcr.io/actions/actions-runner:latest
         command: ["/home/runner/run.sh"]
+    volumes:
+      - name: work
+        ephemeral:
+          volumeClaimTemplate:
+            spec:
+              storageClassName: standard
+              accessModes: ["ReadWriteOnce"]
+              resources:
+                requests:
+                  storage: 1Gi

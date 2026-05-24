@@ -5,7 +5,7 @@ on:
     
 jobs:
   test:
-    runs-on: kind-runners
+    runs-on: ubuntu-latest
     steps:
       - run: echo "runner arc"
       - run: hostname
