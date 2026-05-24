@@ -1,0 +1,24 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": ["config:recommended"],
+  "timezone": "America/Sao_Paulo",
+  "dependencyDashboard": true,
+  "labels": ["dependencies", "renovate"],
+  "assignees": ["gscsuela"],
+  "helmfile": {
+    "managerFilePatterns": [
+      "/(^|/)helmfile\\.ya?ml(?:\\.gotmpl)?$/",
+      "/(^|/)helmfiles/.*\\.ya?ml(?:\\.gotmpl)?$/"
+    ]
+  },
+  "packageRules": [
+    {
+      "matchManagers": ["helm-values", "helmv3", "helmfile"],
+      "groupName": "helm charts"
+    },
+    {
+      "matchManagers": ["github-actions"],
+      "groupName": "github actions"
+    }
+  ]
+}
