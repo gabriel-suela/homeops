@@ -1,0 +1,11 @@
+name: test arc
+
+on:
+  workflow_dispatch:
+    
+jobs:
+  test:
+    runs-on: kind-runners
+    steps:
+      - run: echo "runner arc"
+      - run: hostname
