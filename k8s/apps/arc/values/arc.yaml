@@ -1,5 +1,0 @@
-authSecret:
-  create: true
-  github_token: ref+sops://secrets.enc.yaml#github_token
-
-syncPeriod: 1m
