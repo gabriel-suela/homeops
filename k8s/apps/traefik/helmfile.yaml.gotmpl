@@ -1,0 +1,27 @@
+repositories:
+  - name: traefik
+    url: https://traefik.github.io/charts
+templates:
+  default-release: &default-release
+    namespace: traefik
+environments:
+  default:
+    values:
+      - kubeContext: kind-homeops
+        releases:
+          traefik:
+            version: 40.2.0
+            <<: *default-release
+---
+templates:
+  default: &default
+    kubeContext: '{{ .Values.kubeContext }}'
+    version: '{{`{{ .Values | get "releases" | get .Release.Name | get "version" }}`}}'
+    namespace: '{{`{{ .Values | get "releases" | get .Release.Name | get "namespace" }}`}}'
+    values:
+      - ./values.yaml
+releases:
+  - chart: traefik/traefik
+    name: traefik
+    <<: *default
+

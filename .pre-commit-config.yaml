@@ -1,0 +1,25 @@
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v6.0.0
+    hooks:
+      - id: trailing-whitespace
+      - id: end-of-file-fixer
+      - id: check-yaml
+      - id: check-added-large-files
+
+  - repo: https://github.com/adrienverge/yamllint.git
+    rev: v1.37.1
+    hooks:
+      - id: yamllint
+
+  # TODO: add more lints
+  # - repo: https://github.com/helm/chart-testing
+  #   rev: v3.13.0
+  #   hooks:
+  #     - id: ct-lint
+  #       stages: [manual]
+  #
+  # - repo: https://github.com/gruntwork-io/pre-commit
+  #   rev: v0.1.30
+  #   hooks:
+  #     - id: helmlint

@@ -1,0 +1,23 @@
+service:
+  type: ClusterIP
+
+ports:
+  web:
+    hostPort: 80
+  websecure:
+    hostPort: 443
+
+ingressClass:
+  enabled: true
+  isDefaultClass: true
+
+providers:
+  kubernetesIngress:
+    enabled: true
+  kubernetesCRD:
+    enabled: true
+  kubernetesGateway:
+    enabled: false
+
+gateway:
+  enabled: true

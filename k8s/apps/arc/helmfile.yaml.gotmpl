@@ -1,0 +1,27 @@
+repositories:
+  - name: arc
+    url:  https://actions-runner-controller.github.io/actions-runner-controller
+templates:
+  default-release: &default-release
+    namespace: actions-runner-system
+environments:
+  default:
+    values:
+      - kubeContext: kind-homeops
+        releases:
+          arc:
+            version: 0.23.7
+            <<: *default-release
+---
+templates:
+  default: &default
+    kubeContext: '{{ .Values.kubeContext }}'
+    version: '{{`{{ .Values | get "releases" | get .Release.Name | get "version" }}`}}'
+    namespace: '{{`{{ .Values | get "releases" | get .Release.Name | get "namespace" }}`}}'
+    values:
+      - .values/arc.yaml
+      - .values/runners.yaml
+releases:
+  - chart: actions-runner-controller/actions-runner-controller
+    name: arc
+    <<: *default

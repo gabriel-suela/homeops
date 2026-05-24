@@ -1,0 +1,26 @@
+githubWebhookServer:
+  enabled: false
+
+runnerDeployment:
+  enabled: true
+
+runners:
+  repository: gabriel-suela/homeops
+
+  labels:
+    - kind
+    - self-hosted
+
+  group: default
+
+  replicas: 1
+
+  dockerEnabled: true
+
+  resources:
+    limits:
+      cpu: "2"
+      memory: "4Gi"
+    requests:
+      cpu: "500m"
+      memory: "1Gi"

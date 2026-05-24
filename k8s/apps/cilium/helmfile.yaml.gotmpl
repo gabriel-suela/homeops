@@ -1,0 +1,27 @@
+repositories:
+  - name: cilium
+    url: https://helm.cilium.io/
+templates:
+  default-release: &default-release
+    namespace: kube-system
+environments:
+  default:
+    values:
+      - kubeContext: kind-homeops
+        releases:
+          cilium:
+            version: 1.18.3
+            <<: *default-release
+---
+templates:
+  default: &default
+    kubeContext: '{{ .Values.kubeContext }}'
+    version: '{{`{{ .Values | get "releases" | get .Release.Name | get "version" }}`}}'
+    namespace: '{{`{{ .Values | get "releases" | get .Release.Name | get "namespace" }}`}}'
+    values:
+      - ./values.yaml
+releases:
+  - chart: cilium/cilium
+    name: cilium
+    <<: *default
+

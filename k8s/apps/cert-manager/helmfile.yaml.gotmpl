@@ -1,0 +1,26 @@
+repositories:
+  - name: cert-manager
+    url:  https://charts.jetstack.io
+templates:
+  default-release: &default-release
+    namespace: cert-manager
+environments:
+  default:
+    values:
+      - kubeContext: kind-homeops
+        releases:
+          cert-manager:
+            version: 1.20.2
+            <<: *default-release
+---
+templates:
+  default: &default
+    kubeContext: '{{ .Values.kubeContext }}'
+    version: '{{`{{ .Values | get "releases" | get .Release.Name | get "version" }}`}}'
+    namespace: '{{`{{ .Values | get "releases" | get .Release.Name | get "namespace" }}`}}'
+    values:
+      - ./values.yaml
+releases:
+  - chart: cert-manager/cert-manager
+    name: cert-manager
+    <<: *default
