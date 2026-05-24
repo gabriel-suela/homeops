@@ -9,10 +9,11 @@ jobs:
   pre-commit:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-        name: Checkout
-      - uses: actions/setup-python@v3
-        name: Install dependencies
-
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Install dependencies
+        uses: actions/setup-python@v3
       - name: Run pre-commit
-        run: pre-commit run --all-files
+        uses: pre-commit/action@v3.0.1
+        with:
+          extra_args: --all-files
