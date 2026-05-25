@@ -1,7 +1,6 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": ["config:recommended"],
-	"gitAuthor": "Renovate Bot <gscsuela@gmail.com",
   "timezone": "America/Sao_Paulo",
   "dependencyDashboard": true,
   "labels": ["dependencies", "renovate"],
