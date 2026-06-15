@@ -12,7 +12,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v6
       - name: Renovate bot
-        uses: renovatebot/github-action@v46.1.14
+        uses: renovatebot/github-action@v46.1.15
         env:
           RENOVATE_REPOSITORIES: ${{ github.repository }}
         with:
